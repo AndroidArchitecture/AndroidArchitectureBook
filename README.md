@@ -1,6 +1,7 @@
 # Android Architecture Book
 
-Руководство по применению чистой архитектуре в Android проектах
+Руководство по применению чистой архитектуре в Android проектах. <br>
+[Вперед к знаниям](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/Intro.md)
 
 ## Устройство репозитория
 
