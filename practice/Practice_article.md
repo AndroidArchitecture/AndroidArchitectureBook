@@ -559,7 +559,7 @@ SubscriveOn() происходит уже в интеракторе, или ре
 При любом запросе нам может вернуться ошибка - истекла сессия. Как это вписать в Чистую архитектуру?<br>
 
 **Решение**<br>
-Подробное решение предложено здесь **ссылка на кейс авторизации**<br>
+Подробное решение предложено [здесь](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/cases/auth/Auth_article.md)<br>
 
 #clean-architecture #практики<br>
 
