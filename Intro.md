@@ -18,7 +18,7 @@
 
 Итак, перед вами **версия 0.1**. Первый набросок, который состоит их трех частей:<br>
 1. [Теория](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/theory/Theory_article.md). В этом разделе представлено краткое теоретическое введение в тему Чистой архитектуры. <br>
-2. [Практиктические вопросы](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/practice/Practice_article.md). Обзор наиболее задаваемых вопросов в виде "Проблема - Решение".<br>
+2. [Практические вопросы](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/practice/Practice_article.md). Обзор наиболее задаваемых вопросов в виде "Проблема - Решение".<br>
 3. [Практические кейсы](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/cases/Cases_article.md). Самая сладкая часть. Реальные жизненные и нетривиальные кейсы, реализованные в парадигме Чистой архитектуры. <br>
 Уже подробно рассмотрены [Аутенфикация](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/cases/auth/Auth_article.md) и [Визарды](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/cases/wizards/Wizards_article.md) в Чистой архитектуре.<br>
 
