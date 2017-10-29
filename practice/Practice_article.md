@@ -72,58 +72,61 @@ https://martinfowler.com/bliki/CQRS.html<br>
 
 В проектах с чистой архитекторой, чаще всего пакеты формируют по фичам или слоям. Примеры есть в статье http://www.javapractices.com/topic/TopicAction.do?Id=205.<br>
 Примерная структура проекта может быть такой:<br>
--di<br>
----app<br>
----payments<br>
----operation<br>
--presentation<br>
----view<br>
------payments<br>
--------PaymentsView<br>
--------PaymentsFragment<br>
------operations<br>
--------OperationsView<br>
--------OperationsFragment<br>
----presenter<br>
------payments<br>
--------PaymantsPresenter<br>
------operations<br>
--------OperationsPresenter<br>
--domain (он же business)<br>
----payments<br>
------PaymentsInteractor<br>
------PaymentsInteractorImpl<br>
------CurrencyHandler (вспомогательный класс для PaymentsInteractor)<br>
----operations<br>
------OperationsInteractor<br>
--------rubs<br>
----------OperationsInteractorRubs<br>
----------RubsManager (вспомогательный класс для OperationsInteractorRubs)<br>
--------currency<br>
----------OperationsInteractorCurr<br>
----------CurrencyManager (вспомогательный класс для OperationsInteractorCurr)<br>
--repositories<br>
----payments<br>
------PaymentsRepository<br>
------PaymentsRepositoryImpl<br>
----operations<br>
------OperationsRepository<br>
------OperationsRepositoryImpl<br>
--data<br>
----network<br>
----db<br>
--models (по сути хранилище всех dto)<br>
----payments<br>
------PaymentsModel<br>
----operations<br>
------presentation<br>
--------OperationUIModel<br>
------domain<br>
--------OperationsRubModel<br>
--------OperationCurrModel<br>
------data<br>
--------OperationsRubNetworkModel<br>
--------OperationCurrNetworkModel<br>
+```
+project
+├─ di
+│  ├─ app
+│  ├─ payments
+│  └─ operation
+├─ presentation
+│  ├─ view
+│  │  ├─ payments
+│  │  │  ├─ PaymentsView
+│  │  │  └─ PaymentsFragment
+│  │  └─ operations
+│  │     ├─ OperationsView
+│  │     └─ OperationsFragment
+│  └─ presenter
+│     ├─ payments
+│     │  └─ PaymantsPresenter
+│     └─ operations
+│        └─ OperationsPresenter
+├─ domain (он же business)
+│  ├─ payments
+│  │  ├─ PaymentsInteractor
+│  │  ├─ PaymentsInteractorImpl
+│  │  └─ CurrencyHandler (вспомогательный класс для PaymentsInteractor)
+│  └─ operations
+│     ├─ OperationsInteractor
+│     ├─ rubs
+│     │  ├─ OperationsInteractorRubs
+│     │  └─ RubsManager (вспомогательный класс для OperationsInteractorRubs)
+│     └─ currency
+│        ├─ OperationsInteractorCurr
+│        └─ CurrencyManager (вспомогательный класс для OperationsInteractorCurr)
+├─ repositories
+│  ├─ payments
+│  │  ├─ PaymentsRepository
+│  │  └─ PaymentsRepositoryImpl
+│  └─ operations
+│     ├─ OperationsRepository
+│     └─ OperationsRepositoryImpl
+├─ data
+│  ├─ network
+│  └─ db
+└─ models (по сути хранилище всех dto)
+   ├─ payments
+   │  ├─ PaymentsModel
+   └─ operations
+      ├─ presentation
+      │  └─ OperationUIModel
+      ├─ domain
+      │  ├─ OperationsRubModel
+      │  └─ OperationCurrModel
+      └─ data
+         ├─ OperationsRubNetworkModel
+         └─ OperationCurrNetworkModel
+```
 
 Разбивать только по слоям или фичам невсегда бывает удобно, поэтому гибридный вариант, когда внутри одного пакета слоя могут быть пакеты с фичами, вполне приемлим.<br>
 
