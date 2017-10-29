@@ -23,60 +23,62 @@
 Модели данных обычно представляют собой простые POJO, то есть только данные без какой-либо логики. Для упрощения все подобные модели лучше размещать в специальном пакете под названием "models" (можно подобрать более удачное название, чтобы не так созвучно было с понятием "model").<br>
 
 Структура пакетов:
+```
+project
+├─ di
+│  ├─ app
+│  ├─ payments
+│  └─ operation
+├─ presentation
+│  ├─ view
+│  │  ├─ payments
+│  │  │  ├─ PaymentsView
+│  │  │  └─ PaymentsFragment
+│  │  └─ operations
+│  │     ├─ OperationsView
+│  │     └─ OperationsFragment
+│  └─ presenter
+│     ├─ payments
+│     │  └─ PaymantsPresenter
+│     └─ operations
+│        └─ OperationsPresenter
+├─ domain (он же business)
+│  ├─ payments
+│  │  ├─ PaymentsInteractor
+│  │  ├─ PaymentsInteractorImpl
+│  │  └─ CurrencyHandler (вспомогательный класс для PaymentsInteractor)
+│  └─ operations
+│     ├─ OperationsInteractor
+│     ├─ rubs
+│     │  ├─ OperationsInteractorRubs
+│     │  └─ RubsManager (вспомогательный класс для OperationsInteractorRubs)
+│     └─ currency
+│        ├─ OperationsInteractorCurr
+│        └─ CurrencyManager (вспомогательный класс для OperationsInteractorCurr)
+├─ repositories
+│  ├─ payments
+│  │  ├─ PaymentsRepository
+│  │  └─ PaymentsRepositoryImpl
+│  └─ operations
+│     ├─ OperationsRepository
+│     └─ OperationsRepositoryImpl
+├─ data
+│  ├─ network
+│  └─ db
+└─ models (по сути хранилище всех dto)
+   ├─ payments
+   │  ├─ PaymentsModel
+   └─ operations
+      ├─ presentation
+      │  └─ OperationUIModel
+      ├─ domain
+      │  ├─ OperationsRubModel
+      │  └─ OperationCurrModel
+      └─ data
+         ├─ OperationsRubNetworkModel
+         └─ OperationCurrNetworkModel
+```
 
--di<br>
----app<br>
----payments<br>
----operation<br>
--presentation<br>
----view<br>
------payments<br>
--------PaymentsView<br>
--------PaymentsFragment<br>
------operations<br>
--------OperationsView<br>
--------OperationsFragment<br>
----presenter<br>
------payments<br>
--------PaymantsPresenter<br>
------operations<br>
--------OperationsPresenter<br>
--domain (он же business)<br>
----payments<br>
------PaymentsInteractor<br>
------PaymentsInteractorImpl<br>
------CurrencyHandler (вспомогательный класс для PaymentsInteractor)<br>
----operations<br>
------OperationsInteractor<br>
--------rubs<br>
----------OperationsInteractorRubs<br>
----------RubsManager (вспомогательный класс для OperationsInteractorRubs)<br>
--------currency<br>
----------OperationsInteractorCurr<br>
----------CurrencyManager (вспомогательный класс для OperationsInteractorCurr)<br>
--repositories<br>
----payments<br>
------PaymentsRepository<br>
------PaymentsRepositoryImpl<br>
----operations<br>
------OperationsRepository<br>
------OperationsRepositoryImpl<br>
--data<br>
----network<br>
----db<br>
--models (по сути хранилище всех dto)<br>
----payments<br>
------PaymentsModel<br>
----operations<br>
------presentation<br>
--------OperationUIModel<br>
------domain<br>
--------OperationsRubModel<br>
--------OperationCurrModel<br>
------data<br>
--------OperationsRubNetworkModel<br>
--------OperationCurrNetworkModel<br>
- 
 3. Есть несколько вариантов трактования понятия "Репозиторий". Подробно можно почитать, например, [здесь](http://hannesdorfmann.com/android/evolution-of-the-repository-pattern). В Андроид-мире "Репозиторий" - это абстракция для получения данных, то есть она скрывает, с какого именно источника получены те или иные данные. <br>
 Кроме того Репозиторий может внутри себя реализовывать логику кеширования данных и соответственно выдачи либо закешированных данных, либо данных с сети. 
 
