@@ -178,8 +178,10 @@ Dagger 2 имеет следующие преимущества перед "ру
 Есть возражения, что если осуществлять еще и кеширование, то как-то много всего будет в Репозитории. Ну тут остается только посоветовать - делегируйте во вспомогательные классы. У Фернандо показан хороший пример делегирования через Фабрику и DataStore (в [статье Ханнеса](http://hannesdorfmann.com/android/evolution-of-the-repository-pattern), раздел Evolution of the Repository Pattern term). Там фабрика решает, какой DataStore задействовать для конкретного id. <br>
 Если для принятия решения о кешировании нужна информация с другого Репозитория, то пускай Интерактор передаст через аргумент метода нужную инфу в Репозиторий. Вообщем тут Интерактор отвечает за взаимодействием и необходимый обмен информацией между Репозиториями. Например у одного репозитория запросил, какой режим сейчас (пользовательский или демо), а в другой репозиторий передал эти данные для получения корректного списка операций.<br>
 
-    modeRepository.getMode()
-        .flatMap(mode -> operationsRepository.getOperations(mode))
+``` java
+modeRepository.getMode()
+    .flatMap(mode -> operationsRepository.getOperations(mode))
+```
 
 Исходя из вышесказанного Репозиторий должен тестироваться.<br>
 Если вам нужно сделать приложение быстро, можно, конечно, не заморачиваться с маппингом, а передавать модель, полученную с запроса. Но если приложение чуть более серьезное и долгое, то лучше маппить. Так как по опыту, по Дате-уровне или по логике получения данных всегда что-то может поменяться. Бизнес-логика про это вообще не должна знать.<br>
@@ -218,13 +220,17 @@ Dagger 2 имеет следующие преимущества перед "ру
 Есть интерфейс Репозитория. Скажем, IAppRepository<br>
 У него есть метод :<br>
 
-    public Observable<Point> getLocation()
+```java
+public Observable<Point> getLocation()
+```
 
 В конкретной реализации интерфейса - AppRepository будет такой код примерно:<br>
 
-    public Observable<Point> getLocation() {
-       return geoApiProvider.getLocation()
-    }
+```java
+public Observable<Point> getLocation() {
+    return geoApiProvider.getLocation()
+}
+```
 
 geoApiProvider - это специальный класс, которому мы делегируем работу с сервисом и т.д.  Внутри у этого класса будет работа с сервисом и Subject, через который будут отдаваться данные. Заметим, что наружу мы выдаем не Subject, а Observable - ни к чему пользователям знать большее.<br>
 Могут быть вопросы по тому, а как потом убить сервис, если он стартующий, например.<br>
@@ -420,20 +426,26 @@ SubscriveOn() происходит уже в интеракторе, или ре
 
 Презентер:<br>
 
-    userInteractor.downloadUserInfo()
-      .map(mapper::entityToView);
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe(view::showUserInfo);
+```java
+userInteractor.downloadUserInfo()
+  .map(mapper::entityToView);
+  .observeOn(AndroidSchedulers.mainThread())
+  .subscribe(view::showUserInfo);
+```
 
 Интерактор:<br>
 
-    repository.downloadUserInfo();
+```java
+repository.downloadUserInfo();
+```
 
 Репозиторий (в более сложном кейсе, Schedulers зависи от источника данных, тут упрощённый пример с нетворком):<br>
 
-    api.downloadUserInfo()
-      .subscribeOn(Schedulers.io)
-      .map(mapper::networkToEntity);
+```java
+api.downloadUserInfo()
+  .subscribeOn(Schedulers.io)
+  .map(mapper::networkToEntity);
+```
 
 Переключение потоков может быть как частью бизнес-логики, так и частью слоя данных. Зависит от того, какой класс имеет необходимую информацию для принятия решения.<br>
 При передаче между слоями можно всегда прокидывать данные через главный поток - таким образом, при получении observable в новом слое мы знаем, на каком потоке он выполнится. Минус подхода - зачастую, будут излишние переключения.<br>
