@@ -20,7 +20,7 @@
 1. [Теория](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/theory/Theory_article.md). В этом разделе представлено краткое теоретическое введение в тему Чистой архитектуры. <br>
 2. [Практические вопросы](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/practice/Practice_article.md). Обзор наиболее задаваемых вопросов в виде "Проблема - Решение".<br>
 3. [Практические кейсы](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/cases/Cases_article.md). Самая сладкая часть. Реальные жизненные и нетривиальные кейсы, реализованные в парадигме Чистой архитектуры. <br>
-Уже подробно рассмотрены [Аутенфикация](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/cases/auth/Auth_article.md) и [Визарды](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/cases/wizards/Wizards_article.md) в Чистой архитектуре.<br>
+Уже подробно рассмотрены [Аутентификация](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/cases/auth/Auth_article.md) и [Визарды](https://github.com/AndroidArchitecture/AndroidArchitectureBook/blob/master/cases/wizards/Wizards_article.md) в Чистой архитектуре.<br>
 
 Сразу оговорюсь, представленное в CookBook мнение не является абсолютной истиной. Абсолютная истина не достижима, тем более в архитектуре. Но мы сделали попытку, и будем безмерно рады, если вы оставите свою обратную связь в виде звездочек и предложений/замечаний в виде issues и pull requests, которые можно обсудить либо в задачах, либо в чате.<br>
 Присоединяйтесь к проекту! Сделаем нашу программистскую жизнь проще и лучше! За Чистую архитектуру!<br>
