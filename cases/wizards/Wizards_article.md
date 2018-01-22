@@ -10,7 +10,7 @@
 
  - максимальная переиспользуемость экранов без внесения изменений в соответствующие классы (Презентеры, Интеракторы и т.д.),<br>
  - независимость экранов, то есть чтобы экраны не знали друг о друге,<br>
- - сосредоточнение логики переходов в одном месте,<br>
+ - сосредоточение логики переходов в одном месте,<br>
  - тестируемость данной логики.<br>
 
 Что же, давайте начнем с [простого примера, ветка sample_1](https://github.com/AndroidArchitecture/WizardCase/tree/sample_1). Нам необходимо написать Визард регистрации пользователя. Состоять он будет из трех экранов:<br>
@@ -153,7 +153,6 @@ public class MainWizardSmartRouter {
             currentWizardStep = WizardStep.LICENSE;
             router.backTo(LICENSE_SCREEN);
         }
-
     };
 
     public WizardSmartRouter(Router router) {
@@ -322,7 +321,7 @@ public class InfoFinishFragment extends InfoFragment {
 Разве никак нельзя как-то избежать этого безжалостного дублирования кода? На самом деле можно. Давайте еще раз взглянем на схему:<br>
 ![image](https://habrastorage.org/web/10e/68d/808/10e68d808c994bcdb3f8000724f36ee9.png)
 
-На самом деле ее можно трансформитровать до такой схемы:<br>
+На самом деле ее можно трансформировать до такой схемы:<br>
 ![image](https://habrastorage.org/web/b72/6ee/ab7/b726eeab7080457bb6a0258cfc2dd8db.png)
 
 То есть последовательность экранов InformationScreen, LoginScreen и RegistrationScreen и логику их взаимодействия мы выделяем в новый **AccountWizard**. Этот **AccountWizard** может сообщить внешнему Визарду, допустим, только две вещи:<br>
@@ -356,7 +355,6 @@ public class AccountWizardSmartRouter {
         public void infoWizardBack() {
             router.finishChain();
         }
-
     };
 
     private final LoginWizardPart loginWizardPart = new LoginWizardPart() {
@@ -378,7 +376,6 @@ public class AccountWizardSmartRouter {
             accountWizardStep = REGISTRATION;
             router.navigateTo(REGISTRATION_SCREEN);
         }
-
     };
 
     private final RegistrationWizardPart registrationWizardPart = new RegistrationWizardPart() {
@@ -394,7 +391,6 @@ public class AccountWizardSmartRouter {
             accountWizardStep = LOGIN;
             router.backTo(LOGIN_SCREEN);
         }
-
     };
 
     public AccountWizardSmartRouter(Router router,
