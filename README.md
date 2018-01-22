@@ -13,6 +13,6 @@
 
 * Написание каждой из глав происходит в отдельной feature ветке (см. [шпаргалку по Gitflow](https://danielkummer.github.io/git-flow-cheatsheet/index.ru_RU.html))
 * Изменения сливаются в develop посредством pull request
-* commit message осуществляются **сторого на русском языке**
+* commit message осуществляются **строго на русском языке**
 
 
