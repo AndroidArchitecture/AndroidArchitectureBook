@@ -5,7 +5,7 @@
 [Android Architecture: Part 2 - the clean architecture](http://five.agency/android-architecture-part-2-clean-architecture/)<br>
 [Android Architecture: Part 3 - Applying clean architecture on Android](http://five.agency/android-architecture-part-3-applying-clean-architecture-android/)<br>
 [Android Architecture: Part 4 - Applying Clean Architecture on Android, Hands on (source code included)](http://five.agency/android-architecture-part-4-applying-clean-architecture-on-android-hands-on/)<br>
-[Android Architecture: Part 5 - How to Test Clean Architecture](http://five.agency/android-architecture-part-5-how-to-test-clean-architecture/)<br>
+[Android Architecture: Part 5 - How to Test Clean Architecture](https://five.agency/android-architecture-part-5-test-clean-architecture/)<br>
 
 Очень грамотное теоретическое описание трансформации классической Clean Architecture от дядюшки Боба в Clean Architecture для Android. 
 Единственное, вторая статья как-то немного запутала с этими input/output портами для UseCase и решением проблемы флоу данных через наследование и композицию. Немного оторвано от практики, как нам показалось. Лучше сразу к третьей части приступить, если вы также не совсем поняли.<br>
