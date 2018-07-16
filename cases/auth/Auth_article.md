@@ -51,7 +51,7 @@ public class MainInterceptor implements Interceptor {
 
 }
 ```
-Допустим, что если токен протухает, то сервер возвращает нам 401 ошибку. В этом случае мы можем воспользоваться **Authenticator**, специальным механизмом Retrofit для обработки подобных ситуаций. И в **Authenticator** мы должны у **AuthHolder** запустить процесс обновления токена:<br>
+Допустим, что если токен протухает, то сервер возвращает нам 401 ошибку. В этом случае мы можем воспользоваться **Authenticator**, специальным механизмом OkHttp для обработки подобных ситуаций. И в **Authenticator** мы должны у **AuthHolder** запустить процесс обновления токена:<br>
 ```java
 public class MainAuthenticator implements Authenticator {
 
