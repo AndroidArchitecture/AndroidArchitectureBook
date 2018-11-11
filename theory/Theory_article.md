@@ -18,9 +18,7 @@
 
  1. Проектировать фичу лучше начинать сверху вниз, а не наоборот, так как вы прежде всего отталкиваетесь от того, что видит конечный пользователь.
  
-2. Общая структура. По канонам интерфейсы Репозитория относятся к бизнес-логике, а конкретные имплементации - к data. Мы для упрощения решили интерфейсы и имплементации Репозиториев вынести в отдельный слой (про это в 2017 рассказываем). <br>
-Кроме того и структура пакетов меняется соответствующим образом. Плюс еще немного поменялось представление о том, где же должны быть модели данных.<br>
-Модели данных обычно представляют собой простые POJO, то есть только данные без какой-либо логики. Для упрощения все подобные модели лучше размещать в специальном пакете под названием "models" (можно подобрать более удачное название, чтобы не так созвучно было с понятием "model").<br>
+2. Общая структура. Итоговый вид структуры пакетов соответствует классическим канонам Чистой архитектуры<br>
 
 Структура пакетов:
 ```
@@ -36,7 +34,9 @@ project
 │  │  │  └─ PaymentsFragment
 │  │  └─ operations
 │  │     ├─ OperationsView
-│  │     └─ OperationsFragment
+│  │     ├─ OperationsFragment
+│  │     └─ models
+│  │        └─ OperationUIModel
 │  └─ presenter
 │     ├─ payments
 │     │  └─ PaymantsPresenter
@@ -46,37 +46,33 @@ project
 │  ├─ payments
 │  │  ├─ PaymentsInteractor
 │  │  ├─ PaymentsInteractorImpl
-│  │  └─ CurrencyHandler (вспомогательный класс для PaymentsInteractor)
+│  │  ├─ CurrencyHandler (вспомогательный класс для PaymentsInteractor)
+|  |  ├─ PaymentsRepository
+|  |  └─ models
+|  |     └─PaymentsModel
 │  └─ operations
 │     ├─ OperationsInteractor
 │     ├─ rubs
 │     │  ├─ OperationsInteractorRubs
 │     │  └─ RubsManager (вспомогательный класс для OperationsInteractorRubs)
-│     └─ currency
-│        ├─ OperationsInteractorCurr
-│        └─ CurrencyManager (вспомогательный класс для OperationsInteractorCurr)
-├─ repositories
-│  ├─ payments
-│  │  ├─ PaymentsRepository
-│  │  └─ PaymentsRepositoryImpl
-│  └─ operations
+│     ├─ currency
+│     │  ├─ OperationsInteractorCurr
+│     │  └─ CurrencyManager (вспомогательный класс для OperationsInteractorCurr)
 │     ├─ OperationsRepository
-│     └─ OperationsRepositoryImpl
+│     └─ models
+│        ├─ OperationsRubModel
+│        └─ OperationCurrModel
 ├─ data
+│  ├─ repositories
+│  │  ├─ payments
+│  │  │  └─ PaymentsRepositoryImpl
+│  │  └─ operations
+│  │     ├─ OperationsRepositoryImpl  
+│  │     └─ models
+│  │        ├─ OperationsRubNetworkModel
+│  │        └─ OperationCurrNetworkModel
 │  ├─ network
 │  └─ db
-└─ models (по сути хранилище всех dto)
-   ├─ payments
-   │  ├─ PaymentsModel
-   └─ operations
-      ├─ presentation
-      │  └─ OperationUIModel
-      ├─ domain
-      │  ├─ OperationsRubModel
-      │  └─ OperationCurrModel
-      └─ data
-         ├─ OperationsRubNetworkModel
-         └─ OperationCurrNetworkModel
 ```
 
 3. Есть несколько вариантов трактования понятия "Репозиторий". Подробно можно почитать, например, [здесь](http://hannesdorfmann.com/android/evolution-of-the-repository-pattern). В Андроид-мире "Репозиторий" - это абстракция для получения данных, то есть она скрывает, с какого именно источника получены те или иные данные. <br>
